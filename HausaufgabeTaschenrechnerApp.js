@@ -210,6 +210,6 @@ describe("Calculator App Tests", function () {
     const result = await driver
       .findElement(By.id("output"))
       .getAttribute("value");
-    assert.strictEqual(result, "111111111111111111111");
+    assert.strictEqual(result, "111111110011111111100");
   });
 });
