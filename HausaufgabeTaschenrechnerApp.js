@@ -67,4 +67,149 @@ describe("Calculator App Tests", function () {
       .getAttribute("value");
     assert.strictEqual(result, "20");
   });
+
+  it("Bonusaufgabe 1: Validierung der Rechenpriorität", async function () {
+    await driver.get("https://seleniumbase.io/apps/calculator");
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id("add")).click();
+    await driver.findElement(By.id("3")).click();
+    await driver.findElement(By.xpath(`//*[@id="multiply"]`)).click();
+    await driver.findElement(By.id("4")).click();
+    await driver.findElement(By.id("subtract")).click();
+    await driver.findElement(By.id("6")).click();
+    await driver.findElement(By.id("divide")).click();
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id("equal")).click();
+
+    const result = await driver
+      .findElement(By.id("output"))
+      .getAttribute("value");
+    assert.strictEqual(result, "11");
+  });
+
+  it("Wiederhole die Berechnung mit Klammern, z. B. (2 + 3) × (4 - 6 ÷ 2):", async function () {
+    await driver.get("https://seleniumbase.io/apps/calculator");
+    await driver.findElement(By.id("(")).click();
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id("add")).click();
+    await driver.findElement(By.id("3")).click();
+    await driver.findElement(By.id(")")).click();
+    await driver.findElement(By.xpath(`//*[@id="multiply"]`)).click();
+    await driver.findElement(By.id("(")).click();
+    await driver.findElement(By.id("4")).click();
+    await driver.findElement(By.id("subtract")).click();
+    await driver.findElement(By.id("6")).click();
+    await driver.findElement(By.id("divide")).click();
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id(")")).click();
+    await driver.findElement(By.id("equal")).click();
+
+    const result = await driver
+      .findElement(By.id("output"))
+      .getAttribute("value");
+    assert.strictEqual(result, "5");
+  });
+
+  it("Bonusaufgabe 2: 1", async function () {
+    await driver.get("https://seleniumbase.io/apps/calculator");
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.xpath(`//*[@id="."]`)).click();
+    await driver.findElement(By.id("1")).click();
+    await driver.findElement(By.id("add")).click();
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.xpath(`//*[@id="."]`)).click();
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id("equal")).click();
+
+    const result = await driver
+      .findElement(By.id("output"))
+      .getAttribute("value");
+    assert.strictEqual(result, "0.3");
+  });
+
+  it("Bonusaufgabe 2: 2", async function () {
+    await driver.get("https://seleniumbase.io/apps/calculator");
+    await driver.findElement(By.id("1")).click();
+    await driver.findElement(By.id("divide")).click();
+    await driver.findElement(By.id("3")).click();
+    await driver.findElement(By.id("equal")).click();
+
+    const result = await driver
+      .findElement(By.id("output"))
+      .getAttribute("value");
+    assert.strictEqual(result, "0.333333333");
+  });
+
+  it("Bonusaufgabe 2: 3", async function () {
+    await driver.get("https://seleniumbase.io/apps/calculator");
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.xpath(`//*[@id="."]`)).click();
+    await driver.findElement(By.id("1")).click();
+    await driver.findElement(By.id("add")).click();
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.xpath(`//*[@id="."]`)).click();
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id("subtract")).click();
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.xpath(`//*[@id="."]`)).click();
+    await driver.findElement(By.id("3")).click();
+    await driver.findElement(By.id("equal")).click();
+
+    const result = await driver
+      .findElement(By.id("output"))
+      .getAttribute("value");
+    assert.strictEqual(result, "0");
+  });
+
+  it("Optionale Herausforderung: ", async function () {
+    await driver.get("https://seleniumbase.io/apps/calculator");
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.id("1")).click();
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id("3")).click();
+    await driver.findElement(By.id("4")).click();
+    await driver.findElement(By.id("5")).click();
+    await driver.findElement(By.id("6")).click();
+    await driver.findElement(By.id("7")).click();
+    await driver.findElement(By.id("8")).click();
+    await driver.findElement(By.id("9")).click();
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.id("1")).click();
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id("3")).click();
+    await driver.findElement(By.id("4")).click();
+    await driver.findElement(By.id("5")).click();
+    await driver.findElement(By.id("6")).click();
+    await driver.findElement(By.id("7")).click();
+    await driver.findElement(By.id("8")).click();
+    await driver.findElement(By.id("9")).click();
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.id("add")).click();
+    await driver.findElement(By.id("9")).click();
+    await driver.findElement(By.id("8")).click();
+    await driver.findElement(By.id("7")).click();
+    await driver.findElement(By.id("6")).click();
+    await driver.findElement(By.id("5")).click();
+    await driver.findElement(By.id("4")).click();
+    await driver.findElement(By.id("3")).click();
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id("1")).click();
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.id("9")).click();
+    await driver.findElement(By.id("8")).click();
+    await driver.findElement(By.id("7")).click();
+    await driver.findElement(By.id("6")).click();
+    await driver.findElement(By.id("5")).click();
+    await driver.findElement(By.id("4")).click();
+    await driver.findElement(By.id("3")).click();
+    await driver.findElement(By.id("2")).click();
+    await driver.findElement(By.id("1")).click();
+    await driver.findElement(By.id("0")).click();
+    await driver.findElement(By.id("equal")).click();
+
+    const result = await driver
+      .findElement(By.id("output"))
+      .getAttribute("value");
+    assert.strictEqual(result, "111111111111111111111");
+  });
 });
